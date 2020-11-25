@@ -29,6 +29,11 @@ print(html_text(titles))
 title1 <- print(html_text(titles)[[1]])
 title1
 
+title2 <- print(html_text(titles)[[2]])
+title2
+
+title39 <- print(html_text(titles)[[39]])
+
 #see how many tables this captures
 tbls <- html_nodes(content(website1), "table")
 print(length(tbls))
@@ -39,6 +44,11 @@ print(length(tbls))
 tbl1 <- html_table(tbls[[1]], fill=TRUE)
 print(tbl1)
 
+tbl2 <- html_table(tbls[[3]], fill=TRUE)
+print(tbl2)
+
+tbl39 <- html_table(tbls[[39]], fill=TRUE)
+print(tbl39)
 #add the name of the table itself as a new column and clean the column names
 tbl1_withname <- tbl1 %>%
   as_tibble() %>%
@@ -50,12 +60,31 @@ tbl1_withname <- tbl1 %>%
 
 tbl1_withname
 
+tbl2_withname <- tbl2 %>%
+  as_tibble() %>%
+  clean_names() %>%
+  mutate(agency = title2) %>%
+  select(agency, everything())
 
+tbl2_withname
 
+tbl39_withname <- tbl39 %>%
+  as_tibble() %>%
+  clean_names() %>%
+  mutate(agency = title39) %>%
+  select(agency, everything())
+
+tbl39_withname
 
 ### TURN IT INTO A FUNCTION #### ---------------------------------------------
 
 #set url for transition list page
+
+cubeme <- function(mynumber) {
+  mynumber ^ 3
+}
+
+cubeme(2)
 scrape_table <- function(tablenum) {
 
   url <- "https://buildbackbetter.gov/the-transition/agency-review-teams/"
@@ -83,7 +112,7 @@ scrape_table <- function(tablenum) {
 #run function once
 scrape_table(1)
 
-
+scrape_table(20)
 
 #### LOOP THROUGH ALL TABLES #### ----------------------------------------------
 
