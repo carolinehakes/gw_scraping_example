@@ -24,6 +24,8 @@ print(html_text(names, trim = TRUE))
 name1 <- print(html_text(names, trim = TRUE)[[1]])
 name1
 
+name2 <- print(html_text(names, trim = TRUE)[[2]])
+name2
 
 #grab the titles
 titles <- html_nodes(content(website1), "h4")
@@ -33,6 +35,8 @@ print(html_text(titles, trim = TRUE))
 title1 <- print(html_text(titles, trim = TRUE)[[1]])
 title1
 
+title2 <- print(html_text(titles, trim = TRUE)[[2]])
+title2
 
 #grab the links
 links <- html_nodes(content(website1), "a.full-link")
@@ -42,9 +46,14 @@ html_attr(links, 'href')
 link1 <- html_attr(links, 'href')[[1]]
 link1
 
+link2 <- html_attr(links, 'href')[[2]]
+link2
+
 
 df <- data.frame("name" = name1, "title" = title1, "link" = link1)
 df
+
+df2 <- data.frame("name" = name2, "title" = title2, "link" = link2)
 
 
 
