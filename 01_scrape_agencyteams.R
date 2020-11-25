@@ -114,6 +114,9 @@ scrape_table(1)
 
 scrape_table(20)
 
+scrape_table(40)
+
+
 #### LOOP THROUGH ALL TABLES #### ----------------------------------------------
 
 #we'll use the map function above to loop through all the tables at once and combine
